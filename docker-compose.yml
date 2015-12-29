@@ -1,0 +1,18 @@
+db_data:
+    image: mysql:5.5
+    entrypoint: /bin/true
+db:
+    build: docker/sql/
+    volumes_from:
+        - db_data
+    restart: always
+    env_file:
+        - .env
+web:
+    build: .
+    ports:
+        - "80:80"
+        - "81:81"
+    links:
+        - db:db
+    restart: always
