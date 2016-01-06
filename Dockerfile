@@ -30,12 +30,10 @@ RUN cpan -i DBI Config::Simple DBD::mysql
 
 RUN echo "#Empty file to enable MIBs" > /etc/snmp/snmp.conf
 
-ADD docker/cmdb/apache.conf /etc/apache2/sites-enabled/000-default.conf
+ADD docker/cmdb/apache_config.conf /etc/apache2/sites-enabled/000-default.conf
 ADD docker/cmdb/php.ini /etc/php5/apache2/php.ini
 ADD . /var/www/netharbour
-RUN rm -rf /var/www/netharbour/{Dockerfile,docker-compose.yml,docker,netharbour.sql} 
-ADD docker/cmdb/cmdb.conf /var/www/netharbour/config/cmdb.conf
-RUN mkdir -p /var/www/netharbour/rrd-files/
+RUN mkdir /var/www/netharbour/rrd-files/
 RUN chown -R www-data /var/www/netharbour && chmod -R a+rx /var/www/netharbour
 ADD docker/cmdb/crontab /etc/cron.d/crontab
 

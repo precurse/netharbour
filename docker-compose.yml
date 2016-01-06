@@ -12,7 +12,8 @@ web:
     build: .
     ports:
         - "80:80"
-        - "81:81"
     links:
         - db:db
     restart: always
+    env_file:
+        - .env
