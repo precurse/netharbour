@@ -36,9 +36,11 @@ Dependencies
 
 ## Docker Usage
 ------------
+Before running container, please update copied .env file with your own values
 ```
 git clone https://github.com/netharbour/netharbour
 cd netharbour
+cp .env.example .env
 docker-compose build
 docker-compose up -d
 ```
