@@ -51,3 +51,5 @@ docker-compose up -d
 ### Viewing Web Interface
 * Visit http://(docker_ip)/netharbour user: admin / pass: admin
 
+### Shell access to container
+```docker exec -it netharbour_web_1 bash```
