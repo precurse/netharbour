@@ -1,19 +1,26 @@
-db_data:
-    image: mysql:5.5
-    entrypoint: /bin/true
-db:
-    build: docker/sql/
-    volumes_from:
-        - db_data
-    restart: always
-    env_file:
-        - .env
-web:
-    build: .
-    ports:
-        - "80:80"
-    links:
-        - db:db
-    restart: always
-    env_file:
-        - .env
+version: '2'
+
+services:
+    db_data:
+        image: mysql:5.5
+        entrypoint: /bin/true
+    db:
+        build:
+            context: .
+            dockerfile: docker/sql/Dockerfile
+        volumes_from:
+            - db_data
+        restart: always
+        env_file:
+            - .env
+    web:
+        build: 
+            context: .
+            dockerfile: ./Dockerfile
+        ports:
+            - "80:80"
+        links:
+            - db:db
+        restart: always
+        env_file:
+            - .env
